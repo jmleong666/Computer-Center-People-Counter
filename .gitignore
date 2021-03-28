@@ -4,3 +4,6 @@ output/
 .vscode/
 player/
 videos/
+dist/
+app.spec
+build/
