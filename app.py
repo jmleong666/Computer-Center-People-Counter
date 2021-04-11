@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 import os.path
 import traceback
+import subprocess
 
 DEFAULT_INPUT_FOLDER = os.path.join(os.getcwd(), "videos")
 DEFAULT_OUTPUT_FOLDER = os.path.join(os.getcwd(), "output")
@@ -107,9 +108,9 @@ while True:
             cli_input_strings = ("python people_counter.py --prototxt mobilenet_ssd/MobileNetSSD_deploy.prototxt --model mobilenet_ssd/MobileNetSSD_deploy.caffemodel --input ", 
                             " --output ", ".avi --output-csv ", ".csv --output-plots ")
             output_path = os.path.join(output_folder, output_path_name)
-            final_input = cli_input_strings[0] + input_path + cli_input_strings[1] + output_path + cli_input_strings[2] + output_path + cli_input_strings[3] + output_path
-            print(final_input)
-            os.system(final_input) # insert run script here
+            args = ["python", "people_counter.py", "--prototxt", "mobilenet_ssd/MobileNetSSD_deploy.prototxt", "--model", "mobilenet_ssd/MobileNetSSD_deploy.caffemodel",
+                    "--input", input_path, "--output", output_path+".avi", "--output-csv", output_path+".csv", "--output-plots", output_path]
+            subprocess.call(args) # insert run script here
             sg.Popup("Success!")
         else:
             sg.popup_error(f'ERROR', "Please select a file!")
