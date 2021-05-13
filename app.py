@@ -1,6 +1,5 @@
 import PySimpleGUI as sg
 import os.path
-import traceback
 import subprocess
 
 DEFAULT_INPUT_FOLDER = os.path.join(os.getcwd(), "videos")
